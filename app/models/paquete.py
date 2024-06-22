@@ -1,4 +1,13 @@
 class Paquete:
+    __numeroEnvio: int
+    __peso: float
+    __nombreDestinatario: str
+    __direccionDestinatario: str
+    __entregado: bool
+    __observaciones: str
+    __repartidor: object
+    __sucursal: object
+    __transporte: object
     def __init__(self, numeroEnvio, peso, nombreDestinatario, direccionDestinatario, entregado, observaciones):
         self.__numeroEnvio = numeroEnvio
         self.__peso = peso

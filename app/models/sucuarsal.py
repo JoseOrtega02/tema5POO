@@ -1,4 +1,10 @@
 class Sucursal:
+    __numero: int
+    __provincia: str
+    __localidad: str
+    __direccion: str
+    __paquetes: object
+    __repartidores: object
     def __init__(self, numero, provincia, localidad, direccion):
         self.__numero = numero
         self.__provincia = provincia

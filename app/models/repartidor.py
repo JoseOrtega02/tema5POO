@@ -1,4 +1,8 @@
 class Repartidor:
+    __numero: int
+    __nombre: str
+    __dni: str
+    __paquetes: object
     def __init__(self, numero, nombre, dni):
         self.__numero = numero
         self.__nombre = nombre

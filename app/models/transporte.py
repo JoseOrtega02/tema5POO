@@ -4,7 +4,7 @@ class Transporte:
     __numeroTransporte:int
     __fechaHoraLlegada:datetime
     __fechaHoraSalida:datetime
-    __paquetes:list
+    __paquetes:object
     def __init__(self, numeroTransporte, fechaHoraSalida, fechaHoraLlegada):
         self.__numeroTransporte = numeroTransporte
         self.__fechaHoraSalida = fechaHoraSalida
