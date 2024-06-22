@@ -1,6 +1,10 @@
 from datetime import datetime
 
 class Transporte:
+    __numeroTransporte:int
+    __fechaHoraLlegada:datetime
+    __fechaHoraSalida:datetime
+    __paquetes:list
     def __init__(self, numeroTransporte, fechaHoraSalida, fechaHoraLlegada):
         self.__numeroTransporte = numeroTransporte
         self.__fechaHoraSalida = fechaHoraSalida
