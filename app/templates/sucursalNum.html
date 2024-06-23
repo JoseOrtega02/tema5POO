@@ -9,7 +9,7 @@
     <h1>sucursal {{sucursal.numero}}</h1>
     <button onclick="showPopup('regPaquete')">Registrar paquete</button>
     <a href="{{url_for('salidaTransporte',id=sucursal.id)}}"><button>Salida de Transporte</button></a>
-    <button>Registrar transporte</button>
+    <a href="{{url_for('transporteLlegada',id=sucursal.id)}}"><button>LLegada transporte</button></a>
     <div id="popUp">
 
     </div>

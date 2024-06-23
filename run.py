@@ -3,7 +3,7 @@ from app.views.loginView import login
 from app.views.registerView import register
 from app.controllers.sucursalController import createPaquete, sucursalController
 from app.controllers.sucursalController import sucursalNumController
-from app.controllers.transporteController import salidaTransporteController, transporteController
+from app.controllers.transporteController import salidaTransporteController, llegadaTransporteConreoller
 from app.views.sucursalView import sucursal
 from app.controllers.transporteController import seleccionarPaquetesController
 from app import createApp
@@ -20,9 +20,9 @@ def reg():
 @app.route("/sucursales")
 def sucu():
     return sucursalController()
-@app.route("/transportes")
-def transportes():
-    return transporteController()
+@app.route("/transporteLlegada/<id>",methods=['GET',"POST"])
+def transporteLlegada(id):
+    return llegadaTransporteConreoller(id)
 @app.route("/sucursales/<id>")
 def sucursalNum(id):
     return sucursalNumController(id)
