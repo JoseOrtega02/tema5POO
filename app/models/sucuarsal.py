@@ -1,17 +1,29 @@
-class Sucursal:
+from . import db
+
+class Sucursal(db.Model):
     __numero: int
     __provincia: str
     __localidad: str
     __direccion: str
     __paquetes: object
     __repartidores: object
+
+    __tablename__ = 'sucursal'
+    id = db.Column(db.Integer, primary_key=True)
+    _numero = db.Column(db.Integer, unique=True, nullable=False)
+    _provincia = db.Column(db.String(100), nullable=False)
+    _localidad = db.Column(db.String(100), nullable=False)
+    _direccion = db.Column(db.String(200), nullable=False)
+
+    repartidores = db.relationship('Repartidor', back_populates='sucursal')
+    paquetes = db.relationship('Paquete', back_populates='sucursal')
+
     def __init__(self, numero, provincia, localidad, direccion):
-        self.__numero = numero
-        self.__provincia = provincia
-        self.__localidad = localidad
-        self.__direccion = direccion
-        self.__paquetes = []
-        self.__repartidores = []
+        self._numero = numero
+        self._provincia = provincia
+        self._localidad = localidad
+        self._direccion = direccion
+
 
     def get_numero(self):
         return self.__numero

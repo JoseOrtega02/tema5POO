@@ -1,4 +1,6 @@
-class Paquete:
+from . import db
+
+class Paquete(db.Model):
     __numeroEnvio: int
     __peso: float
     __nombreDestinatario: str
@@ -8,16 +10,34 @@ class Paquete:
     __repartidor: object
     __sucursal: object
     __transporte: object
-    def __init__(self, numeroEnvio, peso, nombreDestinatario, direccionDestinatario, entregado, observaciones):
-        self.__numeroEnvio = numeroEnvio
-        self.__peso = peso
-        self.__nombreDestinatario = nombreDestinatario
-        self.__direccionDestinatario = direccionDestinatario
-        self.__entregado = entregado
-        self.__observaciones = observaciones
-        self.__repartidor = None
-        self.__sucursal = None
-        self.__transporte = None
+
+    __tablename__ = 'paquete'
+    id = db.Column(db.Integer, primary_key=True)
+    _numeroEnvio = db.Column(db.Integer, unique=True, nullable=False)
+    _peso = db.Column(db.Float, nullable=False)
+    _nombreDestinatario = db.Column(db.String(100), nullable=False)
+    _direccionDestinatario = db.Column(db.String(200), nullable=False)
+    _entregado = db.Column(db.Boolean, default=False)
+    _observaciones = db.Column(db.String(300))
+
+    sucursal_id = db.Column(db.Integer, db.ForeignKey('sucursal.id'), nullable=False)
+    repartidor_id = db.Column(db.Integer, db.ForeignKey('repartidor.id'))
+    transporte_id = db.Column(db.Integer, db.ForeignKey('transporte.id'))
+
+    sucursal = db.relationship('Sucursal', back_populates='paquetes')
+    repartidor = db.relationship('Repartidor', back_populates='paquetes')
+    transporte = db.relationship('Transporte', back_populates='paquetes')
+
+    def __init__(self, numeroEnvio, peso, nombreDestinatario, direccionDestinatario, entregado, observaciones, sucursal_id, repartidor_id=None, transporte_id=None):
+        self._numeroEnvio = numeroEnvio
+        self._peso = peso
+        self._nombreDestinatario = nombreDestinatario
+        self._direccionDestinatario = direccionDestinatario
+        self._entregado = entregado
+        self._observaciones = observaciones
+        self.sucursal_id = sucursal_id
+        self.repartidor_id = repartidor_id
+        self.transporte_id = transporte_id
 
     def get_numeroEnvio(self):
         return self.__numeroEnvio

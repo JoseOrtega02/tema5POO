@@ -1,15 +1,28 @@
 from datetime import datetime
+from . import db
 
-class Transporte:
+
+class Transporte(db.Model):
     __numeroTransporte:int
     __fechaHoraLlegada:datetime
     __fechaHoraSalida:datetime
     __paquetes:object
-    def __init__(self, numeroTransporte, fechaHoraSalida, fechaHoraLlegada):
-        self.__numeroTransporte = numeroTransporte
-        self.__fechaHoraSalida = fechaHoraSalida
-        self.__fechaHoraLlegada = fechaHoraLlegada
-        self.__paquetes = []
+    __tablename__ = 'transporte'
+    id = db.Column(db.Integer, primary_key=True)
+    _numeroTransporte = db.Column(db.Integer, unique=True, nullable=False)
+    _fechaHoraSalida = db.Column(db.DateTime, nullable=False)
+    _fechaHoraLlegada = db.Column(db.DateTime, nullable=False)
+
+    sucursal_id = db.Column(db.Integer, db.ForeignKey('sucursal.id'), nullable=False)
+    sucursal = db.relationship('Sucursal', back_populates='transportes')
+
+    paquetes = db.relationship('Paquete', back_populates='transporte')
+
+    def __init__(self, numeroTransporte, fechaHoraSalida, fechaHoraLlegada, sucursal_id):
+        self._numeroTransporte = numeroTransporte
+        self._fechaHoraSalida = fechaHoraSalida
+        self._fechaHoraLlegada = fechaHoraLlegada
+        self.sucursal_id = sucursal_id
 
     def get_numeroTransporte(self):
         return self.__numeroTransporte
