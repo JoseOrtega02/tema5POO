@@ -1,4 +1,3 @@
-from flask import Flask
 from app.views.homeView import home
 from app.views.loginView import login
 from app.views.registerView import register

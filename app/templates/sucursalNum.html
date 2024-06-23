@@ -7,8 +7,65 @@
 </head>
 <body>
     <h1>sucursal {{num}}</h1>
-    <button>Registrar paquete</button>
-    <button>Registrar llegada</button>
+    <button onclick="showPopup('regPaquete')">Registrar paquete</button>
+    <button onclick="showPopup('salidaTransporte')">Registrar llegada</button>
     <button>Registrar transporte</button>
+    <div id="popUp">
+
+    </div>
+    <script>
+        function regPaquete(){
+            alert("registrado correctamente en la sucursal:{{num}}")
+        }
+        function showPaquetes(sucursal){
+            const popup= document.getElementById("popUp")
+            popup.innerHTML = `
+                <h1>Paquetes sucursal: ${sucursal}</h1>
+                <label>
+                    <input type="checkbox" id="cbox1" />Paquete 1    
+                </label>
+                <label>
+                    <input type="checkbox" id="cbox1" />Paquete 1    
+                </label>
+                <label>
+                    <input type="checkbox" id="cbox1" />Paquete 1    
+                </label>
+                <button>Registrar transporte</button>
+            `
+        }
+        function showPopup(btn){
+            const popup= document.getElementById("popUp")
+            const sucursalesH = ["1","2","3","4"]
+            switch(btn){
+                case "regPaquete":
+                    popup.innerHTML = `
+                    <label for="peso">Ingrese peso del paquete: </label>
+                    <input  type="text" id="peso">
+                    <label for="nombre">Ingrese nombre del destinatario: </label>
+                    <input  type="text" id="nombre">
+                    <label for="direc">Ingrese direccion del destinatario: </label>
+                    <input  type="text" id="direc">
+                    <button onclick="regPaquete()">Registrar Paquete</button>
+                    `; 
+                    break;  
+                case "salidaTransporte":
+                    popup.innerHTML = `
+                        <h1>sucursales</h1>
+                        <ul>
+                            ${sucursalesH.map((sucu) =>{
+                        
+                             return `<li> ${sucu} <button onclick="showPaquetes('${sucu}')">selecconar</button></li>`
+                        
+                            })}
+                        </ul>
+                    `;
+                    
+                    break;
+                default: alert("error");
+                
+            }
+            
+        }
+    </script>
 </body>
 </html>
