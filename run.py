@@ -1,22 +1,27 @@
 from app.controllers.homeController import homeController
-from app.views.loginView import login
+from app.controllers.paqueteController import asignarPaqueteController
+from app.controllers.repartidorController import entregaPaqueteController, loginRepartidorController, repartidorController
 from app.views.registerView import register
 from app.controllers.sucursalController import createPaquete, sucursalController
 from app.controllers.sucursalController import sucursalNumController
 from app.controllers.transporteController import salidaTransporteController, llegadaTransporteConreoller
-from app.views.sucursalView import sucursal
 from app.controllers.transporteController import seleccionarPaquetesController
 from app import createApp
+from app.views.repartidorView import repartidorView
 app = createApp()
 @app.route("/")
 def saludo():
     return homeController()
-@app.route("/login")
+@app.route("/loginRepartidor",methods=['GET',"POST"])
 def log():
-    return login()
-@app.route("/register")
-def reg():
-    return register()
+    return loginRepartidorController()
+@app.route("/repartidor/<id>",methods=['GET',"POST"])
+def repartidor(id):
+    return repartidorController(id)
+@app.route("/registrarEntrega/<id>",methods=['GET',"POST"])
+def registrarEntrega(id):
+    return entregaPaqueteController(id)
+
 @app.route("/sucursales")
 def sucu():
     return sucursalController()
@@ -35,6 +40,9 @@ def salidaTransporte(id):
 @app.route("/seleccionarPaquetes/<id>",methods=["GET","POST"])
 def selecPaq(id):
     return seleccionarPaquetesController(id)
+@app.route("/asignarPaquetes/<id>",methods=["GET","POST"])
+def asigPaq(id):
+    return asignarPaqueteController(id)
 if __name__ =="__main__":
     
     app.run()
