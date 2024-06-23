@@ -1,65 +1,9 @@
 from app import db
 
 class Sucursal(db.Model):
-    __numero: int
-    __provincia: str
-    __localidad: str
-    __direccion: str
-    __paquetes: object
-    __repartidores: object
-
     __tablename__ = 'sucursal'
     id = db.Column(db.Integer, primary_key=True)
-    _numero = db.Column(db.Integer, unique=True, nullable=False)
-    _provincia = db.Column(db.String(100), nullable=False)
-    _localidad = db.Column(db.String(100), nullable=False)
-    _direccion = db.Column(db.String(200), nullable=False)
-
-    repartidores = db.relationship('Repartidor', back_populates='sucursal')
-    paquetes = db.relationship('Paquete', back_populates='sucursal')
-
-    def __init__(self, numero, provincia, localidad, direccion):
-        self._numero = numero
-        self._provincia = provincia
-        self._localidad = localidad
-        self._direccion = direccion
-
-
-    def get_numero(self):
-        return self.__numero
-
-    def set_numero(self, numero):
-        self.__numero = numero
-
-    def get_provincia(self):
-        return self.__provincia
-
-    def set_provincia(self, provincia):
-        self.__provincia = provincia
-
-    def get_localidad(self):
-        return self.__localidad
-
-    def set_localidad(self, localidad):
-        self.__localidad = localidad
-
-    def get_direccion(self):
-        return self.__direccion
-
-    def set_direccion(self, direccion):
-        self.__direccion = direccion
-
-    def get_paquetes(self):
-        return self.__paquetes
-
-    def set_paquetes(self, paquetes):
-        self.__paquetes = paquetes
-
-    def get_repartidores(self):
-        return self.__repartidores
-
-    def set_repartidores(self, repartidores):
-        self.__repartidores = repartidores
-
-    def __repr__(self):
-        return f'<Sucursal {self.__numero}>'
+    numero = db.Column(db.Integer, unique=True, nullable=False)
+    provincia = db.Column(db.String(100), nullable=False)
+    localidad = db.Column(db.String(100), nullable=False)
+    direccion = db.Column(db.String(200), nullable=False)

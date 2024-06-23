@@ -9,7 +9,7 @@
     <h1>Sucursales</h1>
     <ul>
         {% for sucursal in sucursales %}
-            <li>{{sucursal}} <a href="{{url_for('sucursalNum',num=sucursal)}}"><button>Seleccionar</button></a></li>
+            <li>{{sucursal.numero}}-{{sucursal.provincia}}-{{sucursal.localidad}} <a href="{{url_for('sucursalNum',id=sucursal.id)}}"><button>Seleccionar</button></a></li>
         {% endfor %}
     </ul>
 </body>

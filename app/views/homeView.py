@@ -1,3 +1,4 @@
 from flask import render_template
-def home():
-    return render_template("home.html")
+from app import db
+def home(repartidores):
+    return render_template("home.html",repartidores=repartidores)

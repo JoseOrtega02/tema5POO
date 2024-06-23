@@ -1,6 +1,5 @@
 from flask import render_template
-def sucursales():
-    sucursales= ["1","2","3"]
+def sucursales(sucursales):
     return render_template("sucursal.html",sucursales=sucursales)
-def sucursal(num):
-    return render_template("sucursalNum.html",num=num)
+def sucursal(sucursal):
+    return render_template("sucursalNum.html",sucursal=sucursal)
