@@ -1,4 +1,4 @@
-from . import db
+from app import db
 
 class Repartidor(db.Model):
     __numero: int
