@@ -12,13 +12,15 @@ def loginRepartidorController():
         try:
             dni = request.form.get("dni")
             numero = request.form.get("numero")
+            if  not dni.isdigit() or  not numero.isdigit():
+                raise TypeError("Debe de ser un numero enero")
             repartidor = Repartidor.query.filter_by(dni=dni,numero=numero).first()
             if not repartidor:
                 raise ValueError("Repartidor no encontrado")
             return redirect(url_for('repartidor', id=repartidor.id))
         except Exception as e:
             flash(str(e), 'error')
-            return redirect(url_for('loginRepartidor'))
+            return redirect(url_for('log'))
     return loginRepartidorView()
 
 def repartidorController(idrepartidor):

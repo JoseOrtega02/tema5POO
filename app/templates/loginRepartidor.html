@@ -17,5 +17,16 @@
             <button type="submit">Ingresar</button>
         </form>
     </div>
+    <div>
+        {% with messages = get_flashed_messages(with_categories = true) %}
+        {% if messages %}
+        <ul class="flashes">
+            {% for catgory,message in messages %}
+            <li class="{{category}}">{{message}}</li>
+            {%endfor%}
+        </ul>
+        {% endif %}
+        {% endwith %}
+    </div>
 </body>
 </html>

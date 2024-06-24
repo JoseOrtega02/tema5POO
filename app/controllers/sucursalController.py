@@ -29,11 +29,16 @@ def createPaquete(id):
         sucu = Sucursal.query.get_or_404(id)
         numEnvio = random.randint(1000, 5000)
         if request.method == 'POST':
+            peso=request.form['peso']
+            nomDestinatario=request.form['nombre']
+            dirDestinatario=request.form['direc']
+            if not nomDestinatario.isalpha():
+                raise TypeError("Nombre del destinatario no validos")
             nuevoPaquete = Paquete(
                 numeroEnvio=numEnvio,
-                peso=request.form['peso'],
-                nomDestinatario=request.form['nombre'],
-                dirDestinatario=request.form['direc'],
+                peso=peso,
+                nomDestinatario=nomDestinatario,
+                dirDestinatario=dirDestinatario,
                 entregado=False,
                 idsucursal=id,
                 idrepartidor=0,

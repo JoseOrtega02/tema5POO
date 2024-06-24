@@ -17,9 +17,6 @@
 
         </div>
         <script>
-            function regPaquete(){
-                alert("registrado correctamente en la sucursal:{{num}}")
-            }
             function showPaquetes(sucursal){
                 const popup= document.getElementById("popUp")
                 popup.innerHTML = `
@@ -38,7 +35,7 @@
             }
             function showPopup(btn){
                 const popup= document.getElementById("popUp")
-                const sucursalesH = ["1","2","3","4"]
+                
                 switch(btn){
                     case "regPaquete":
                         popup.innerHTML = `
@@ -55,19 +52,6 @@
             <button type="submit">Registrar Paquete</button>
         </form>
                         `; 
-                        break;  
-                    case "salidaTransporte":
-                        popup.innerHTML = `
-                            <h1>sucursales</h1>
-                            <ul>
-                                ${sucursalesH.map((sucu) =>{
-                            
-                                return `<li> ${sucu} <button onclick="showPaquetes('${sucu}')">selecconar</button></li>`
-                            
-                                })}
-                            </ul>
-                        `;
-                        
                         break;
                     default: alert("error");
                     
@@ -75,6 +59,17 @@
                 
             }
         </script>
+    </div>
+    <div>
+        {% with messages = get_flashed_messages(with_categories = true) %}
+        {% if messages %}
+        <ul class="flashes">
+            {% for catgory,message in messages %}
+            <li class="{{category}}">{{message}}</li>
+            {%endfor%}
+        </ul>
+        {% endif %}
+        {% endwith %}
     </div>
 </body>
 </html>

@@ -9,7 +9,7 @@ from app.views.asignarPaquetesView import asignarPaquetesView
 def asignarPaqueteController(idsucursal):
     if request.method == "POST":
         try:
-            repartidorId = request.form.get("repartidor")   
+            repartidorId = request.form.get("repartidor")  
             paquetesIds = request.form.getlist("paquetes")
             for paqId in paquetesIds:
                 paquete= Paquete.query.get(paqId)
