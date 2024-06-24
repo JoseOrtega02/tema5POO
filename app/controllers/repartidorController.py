@@ -24,16 +24,19 @@ def loginRepartidorController():
     return loginRepartidorView()
 
 def repartidorController(idrepartidor):
-    if request.method == "POST":
-        numeroE = request.form.get("numero")
-        paquete = Paquete.query.filter_by(numeroEnvio=numeroE,idrepartidor=idrepartidor).first()
-        redirect(url_for("registrarEntrega",id=paquete.id))
-        if paquete:
-            # Redirigir a la vista para registrar la entrega del paquete
-            return redirect(url_for("registrarEntrega", id=paquete.id))
-        else:
-            return "Paquete no encontrado para este repartidor", 404
-    return repartidorView(idrepartidor)
+    try:
+        if request.method == "POST":
+            numeroE = request.form.get("numero")
+            paquete = Paquete.query.filter_by(numeroEnvio=numeroE,idrepartidor=idrepartidor).first()
+            print(paquete)
+            if paquete:
+                return redirect(url_for("registrarEntrega", id=paquete.id))
+            else:
+                raise ValueError("Paquete no encontrado para este repartidor")
+        return repartidorView(idrepartidor)
+    except Exception as e:
+        flash(str(e),'error')
+        return redirect(url_for("repartidor",id=idrepartidor))
 
 def entregaPaqueteController(idPaquete):
     if request.method == "POST":
