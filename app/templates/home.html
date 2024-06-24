@@ -8,10 +8,6 @@
 </head>
 <body>
     <div class="container">
-        <h1>HOLAAA</h1>
-        {% for rep in repartidores%}
-            <h1>{{rep.id}}</h1>
-        {% endfor %}
         <div>
             <a href="{{ url_for('log') }}" class="btn">Login Repartidor</a>
             <a href="{{ url_for('sucu') }}" class="btn">Sucursales</a>
