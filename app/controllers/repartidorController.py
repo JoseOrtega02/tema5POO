@@ -1,4 +1,4 @@
-from flask import redirect, request, url_for
+from flask import flash, redirect, request, url_for
 
 from app.models.paquete import Paquete
 from app.models.repartidor import Repartidor
@@ -9,11 +9,18 @@ from app import db
 
 def loginRepartidorController():
     if request.method == "POST":
-        dni = request.form.get("dni")
-        numero = request.form.get("numero")
-        repartidor = Repartidor.query.filter_by(dni=dni,numero=numero).first()
-        return redirect(url_for('repartidor', id=repartidor.id))
+        try:
+            dni = request.form.get("dni")
+            numero = request.form.get("numero")
+            repartidor = Repartidor.query.filter_by(dni=dni,numero=numero).first()
+            if not repartidor:
+                raise ValueError("Repartidor no encontrado")
+            return redirect(url_for('repartidor', id=repartidor.id))
+        except Exception as e:
+            flash(str(e), 'error')
+            return redirect(url_for('loginRepartidor'))
     return loginRepartidorView()
+
 def repartidorController(idrepartidor):
     if request.method == "POST":
         numeroE = request.form.get("numero")

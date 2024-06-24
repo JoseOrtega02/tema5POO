@@ -4,17 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transportes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>Transportes</h1>
-    <form method="post">
-        <select name="transportes" id="transportes">
-            {% for trans in transportes%}
-                <option value="{{trans.id}}">{{trans.numero}}-{{trans.fechaHoraSalida}}-</option>
-            {% endfor %}
-        </select>
-        <button type="submit">Registrar llegada</button>
-    </form>
+    <div class="container">
+        <h1>Transportes</h1>
+        <form method="post">
+            <select name="transportes" id="transportes">
+                {% for trans in transportes%}
+                    <option value="{{trans.id}}">{{trans.numero}}-{{trans.fechaHoraSalida}}-</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Registrar llegada</button>
+        </form>
+    </div>
     
 </body>
 </html>

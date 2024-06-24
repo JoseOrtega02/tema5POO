@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Salida de transportes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>selecciona la sucursal de destino del transporte</h1>
-    <ul>
-    {% for sucursal in sucursales %}
-    <li>{{sucursal.numero}}-{{sucursal.provincia}}-{{sucursal.localidad}}- <a href="{{url_for('selecPaq',id=sucursal.id)}}"><button>Seleccionar</button></a></li>
-    {% endfor%}
-    </ul>
+    <div class="container">
+        <h1>selecciona la sucursal de destino del transporte</h1>
+        <ul>
+        {% for sucursal in sucursales %}
+        <li>{{sucursal.numero}}-{{sucursal.provincia}}-{{sucursal.localidad}}- <a href="{{url_for('selecPaq',id=sucursal.id)}}"><button>Seleccionar</button></a></li>
+        {% endfor%}
+        </ul>
+    </div>
 </body>
 </html>

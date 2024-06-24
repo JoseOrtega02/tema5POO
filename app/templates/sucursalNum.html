@@ -4,74 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>sucursal {{sucursal.numero}}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>sucursal {{sucursal.numero}}</h1>
-    <button onclick="showPopup('regPaquete')">Registrar paquete</button>
-    <a href="{{url_for('salidaTransporte',id=sucursal.id)}}"><button>Salida de Transporte</button></a>
-    <a href="{{url_for('transporteLlegada',id=sucursal.id)}}"><button>LLegada transporte</button></a>
-    <a href="{{url_for('asigPaq',id=sucursal.id)}}"><button>Asignar Paquetes</button></a>
-    <div id="popUp">
+    <div class="container">
+        <h1>sucursal {{sucursal.numero}}</h1>
+        <button onclick="showPopup('regPaquete')">Registrar paquete</button>
+        <a href="{{url_for('salidaTransporte',id=sucursal.id)}}"><button>Salida de Transporte</button></a>
+        <a href="{{url_for('transporteLlegada',id=sucursal.id)}}"><button>LLegada transporte</button></a>
+        <a href="{{url_for('asigPaq',id=sucursal.id)}}"><button>Asignar Paquetes</button></a>
+        <div id="popUp">
 
-    </div>
-    <script>
-        function regPaquete(){
-            alert("registrado correctamente en la sucursal:{{num}}")
-        }
-        function showPaquetes(sucursal){
-            const popup= document.getElementById("popUp")
-            popup.innerHTML = `
-                <h1>Paquetes sucursal: ${sucursal}</h1>
-                <label>
-                    <input type="checkbox" id="cbox1" />Paquete 1    
-                </label>
-                <label>
-                    <input type="checkbox" id="cbox1" />Paquete 1    
-                </label>
-                <label>
-                    <input type="checkbox" id="cbox1" />Paquete 1    
-                </label>
-                <button>Registrar transporte</button>
-            `
-        }
-        function showPopup(btn){
-            const popup= document.getElementById("popUp")
-            const sucursalesH = ["1","2","3","4"]
-            switch(btn){
-                case "regPaquete":
-                    popup.innerHTML = `
-                    <form action="{{ url_for('registerPaq', id=sucursal.id) }}" method="post">
-        <label for="peso">Ingrese peso del paquete:</label>
-        <input type="text" id="peso" name="peso" required>
-        
-        <label for="nombre">Ingrese nombre del destinatario:</label>
-        <input type="text" id="nombre" name="nombre" required>
-        
-        <label for="direc">Ingrese dirección del destinatario:</label>
-        <input type="text" id="direc" name="direc" required>
-        
-        <button type="submit">Registrar Paquete</button>
-    </form>
-                    `; 
-                    break;  
-                case "salidaTransporte":
-                    popup.innerHTML = `
-                        <h1>sucursales</h1>
-                        <ul>
-                            ${sucursalesH.map((sucu) =>{
+        </div>
+        <script>
+            function regPaquete(){
+                alert("registrado correctamente en la sucursal:{{num}}")
+            }
+            function showPaquetes(sucursal){
+                const popup= document.getElementById("popUp")
+                popup.innerHTML = `
+                    <h1>Paquetes sucursal: ${sucursal}</h1>
+                    <label>
+                        <input type="checkbox" id="cbox1" />Paquete 1    
+                    </label>
+                    <label>
+                        <input type="checkbox" id="cbox1" />Paquete 1    
+                    </label>
+                    <label>
+                        <input type="checkbox" id="cbox1" />Paquete 1    
+                    </label>
+                    <button>Registrar transporte</button>
+                `
+            }
+            function showPopup(btn){
+                const popup= document.getElementById("popUp")
+                const sucursalesH = ["1","2","3","4"]
+                switch(btn){
+                    case "regPaquete":
+                        popup.innerHTML = `
+                        <form action="{{ url_for('registerPaq', id=sucursal.id) }}" method="post">
+            <label for="peso">Ingrese peso del paquete:</label>
+            <input type="text" id="peso" name="peso" required>
+            
+            <label for="nombre">Ingrese nombre del destinatario:</label>
+            <input type="text" id="nombre" name="nombre" required>
+            
+            <label for="direc">Ingrese dirección del destinatario:</label>
+            <input type="text" id="direc" name="direc" required>
+            
+            <button type="submit">Registrar Paquete</button>
+        </form>
+                        `; 
+                        break;  
+                    case "salidaTransporte":
+                        popup.innerHTML = `
+                            <h1>sucursales</h1>
+                            <ul>
+                                ${sucursalesH.map((sucu) =>{
+                            
+                                return `<li> ${sucu} <button onclick="showPaquetes('${sucu}')">selecconar</button></li>`
+                            
+                                })}
+                            </ul>
+                        `;
                         
-                             return `<li> ${sucu} <button onclick="showPaquetes('${sucu}')">selecconar</button></li>`
-                        
-                            })}
-                        </ul>
-                    `;
+                        break;
+                    default: alert("error");
                     
-                    break;
-                default: alert("error");
+                }
                 
             }
-            
-        }
-    </script>
+        </script>
+    </div>
 </body>
 </html>

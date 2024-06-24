@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Repartidor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>Ingresar paqute para entregar</h1>
-    <form action="" method="post">
-        <label for="numero">Ingrese numero de envio:</label>
-        <input type="text" name="numero" id="numero">
-        <button type="submit">Verificar</button>
-    </form>
+    <div class="container">
+        <h1>Ingresar paqute para entregar</h1>
+        <form action="" method="post">
+            <label for="numero">Ingrese numero de envio:</label>
+            <input type="text" name="numero" id="numero">
+            <button type="submit">Verificar</button>
+        </form>
+    </div>
 </body>
 </html>

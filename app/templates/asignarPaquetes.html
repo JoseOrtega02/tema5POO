@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Asinar Paquetes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
 </head>
 <body>
+    <div class="container">
     <h1>Asignar paquetes</h1>
     
     <form  method="post">
@@ -22,5 +25,6 @@
         </select>
         <button type="submit">Asignar Paquetes</button>
     </form>
+    </div>
 </body>
 </html>

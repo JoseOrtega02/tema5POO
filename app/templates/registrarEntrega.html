@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Registrar Entrega</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>Entrega de paquete</h1>
-    <form action="" method="post">
-        <select name="estado" id="estado">
-            <option value="{{True}}">Entregado</option>
-            <option value="{{False}}">No Entregado</option>
-        </select>
-        <label for="observaciones">Ingrese observaciones:</label>
-        <textarea name="observaciones" id="observaciones" cols="30" rows="10"></textarea>
-        <button>Realizar Entrega</button>
-    </form>
+    <div class="container">
+        <h1>Entrega de paquete</h1>
+        <form action="" method="post">
+            <select name="estado" id="estado">
+                <option value="{{True}}">Entregado</option>
+                <option value="{{False}}">No Entregado</option>
+            </select>
+            <label for="observaciones">Ingrese observaciones:</label>
+            <textarea name="observaciones" id="observaciones" cols="30" rows="10"></textarea>
+            <button>Realizar Entrega</button>
+        </form>
+    </div>
 </body>
-</html>
+</htsml>
